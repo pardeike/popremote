@@ -1,6 +1,5 @@
-/* global Chart */
-/// <reference path="../../typings/cordova/cordova.d.ts"/>
 /// <reference path="../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../typings/cordova/cordova.d.ts"/>
 
 var app = angular.module('popremote', ['ionic'])
 .run(function($ionicPlatform, $http, $rootScope) {

@@ -1,0 +1,193 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	position: relative;
+}
+
+#content {
+	background-color: black;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+.slider {
+	background-color: rgba(0,0,0,0.7);
+}
+
+.bar-footer {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.button.button-icon.input-button {
+	position: absolute;
+	right: 0;
+	top: 5px;
+	color: #bbb;
+}
+
+select, option {
+	background-color: transparent !important;
+	-webkit-text-fill-color: white;
+	font-weight: 900;
+}
+
+#search {
+	font-size: 1em;
+	color: white;
+	font-weight: 900;
+	-webkit-text-fill-color: white;
+	line-height: 2em;
+}
+
+.item.item-input {
+	background-color: transparent;
+	border: 0;
+}
+
+.input-label, .item-input, .ion-search {
+	color: white  !important;
+	font-weight: 900  !important;
+}
+
+.clearbutton {
+	position: absolute;
+	z-index: 2;
+	top: 12px;
+	right: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 2px;
+	color: white;
+}
+
+.slider,.slider-slide {
+	top: 0;
+	height: 100%;
+}
+
+.slider-slide.max-height {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+}
+
+.btnrow>div {
+	display: inline-block;
+}
+
+table {
+	width: 100%;
+	height: 100%;
+}
+
+td {
+	color: white;
+	font-size: 4em;
+	width: 33.3%;
+}
+
+.btnrow {
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	align-items: stretch;
+	-webkit-align-items: stretch;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.tapable {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+	height: 100%;
+}
+
+.tapable.activated {
+	color: black;
+}
+
+.tapable>i {
+	flex: none;
+}
+
+.smallicn {
+	font-size: 0.7em;
+}
+
+.flippedicn {
+	transform: scaleY(-1);
+}
+
+.txtbtn {
+	font-size: 0.6em;
+	font-weight: 900;
+	position: relative;
+}
+
+.txtbtn>span {
+	position: relative;
+	top: -9px;
+}
+
+.range {
+	background-color: transparent;
+	border: 0;
+	color: white;
+}
+
+input[type="range"]::-webkit-slider-thumb:before {
+	background: white;
+}
+
+.titlebox {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+	font-size: 0.6em;
+	line-height: 1.2em;
+	font-weight: 900;
+}
+
+.chartbox {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	background-image: url(/img/chartbg.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	color: white;
+}
+
+.time {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	margin-top: -23px;
+	pointer-events: none;
+}
+
+.time>div {
+	display: inline-block;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 8px;
+	padding: 6px 10px 6px 10px;
+	font-size: 0.45em;
+	letter-spacing: 1px;
+	font-weight: 900;
+	pointer-events: none;
+}

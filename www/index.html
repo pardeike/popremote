@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base href="/">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title>PopRemote</title>
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link rel="apple-touch-icon" sizes="60x60" href="/popremote-60x60.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/popremote-76x76.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/popremote-120x120.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/popremote-152x152.png">
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<script src="cordova.js"></script>
+		<script src="js/chart.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/nodrag.js"></script>
+		<script src="js/touchend.js"></script>
+		<script src="js/timedisplay.js"></script>
+		<script src="js/popcorn.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/input.js"></script>
+	</head>
+	<body ng-app="popremote" ng-cloak>
+		<ion-pane ng-controller="main">
+			<ion-content id="content" scroll="false">
+				<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+					<ion-slide prevent-drag>
+						<table>
+							<tr>
+								<td colspan="3"></td>
+							</tr>
+							<tr style="height:1%">
+								<td colspan="3">
+									<div class="titlebox">
+										{{movie.title}}
+									</div>
+								</td>
+							</tr>
+							<tr style="height:20px">
+								<td colspan="3"></td>
+							</tr>
+							<tr style="height:1%">
+								<td colspan="3">
+									<time-display movie="movie" />
+								</td>
+							</tr>
+							<tr style="height:20px">
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<td colspan="3" ng-if="!movie || !movie.streamUrl">
+									<div ng-click="call('toggleplaying')" class="tapable smallicn">
+										<i class="icon" ng-class="playingClass"></i>
+									</div>
+								</td>
+								<td ng-if="movie && movie.streamUrl">
+									<div ng-click="call('toggleplaying')" class="tapable smallicn">
+										<i class="icon" ng-class="playingClass"></i>
+									</div>
+								</td>
+								<td ng-if="movie && movie.streamUrl">
+									<div ng-click="call('back')" class="tapable smallicn">
+										<i class="icon ion-stop"></i>
+									</div>
+								</td>
+								<td ng-if="movie && movie.streamUrl">
+									<div ng-click="stream()" class="tapable smallicn">
+										<i class="icon ion-eye"></i>
+									</div>
+								</td>
+							</tr>
+							<tr ng-if="movie && movie.streamUrl">
+								<td>
+									<div ng-click="start()" class="tapable smallicn">
+										<i class="ion-ios-skipbackward"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('seek', [-30])" class="tapable smallicn">
+										<i class="icon ion-ios-rewind"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('seek', [30])" class="tapable smallicn">
+										<i class="icon ion-ios-fastforward"></i>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3"></td>
+							</tr>
+							<tr style="height:54px">
+								<td colspan="3"></td>
+							</tr>
+						</table>
+					</ion-slide>
+					<ion-slide class="max-height">
+						<table>
+							<tr>
+								<td>
+									<div ng-click="call('movieslist')" class="tapable smallicn">
+										<i class="icon ion-android-film"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('showslist')" class="tapable smallicn">
+										<i class="icon ion-android-desktop"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('showfavourites')" class="tapable smallicn">
+										<i class="icon ion-heart"></i>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div ng-click="call('up')" class="tapable">
+										<i class="icon ion-arrow-up-b"></i>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<div ng-click="left()" class="tapable">
+										<i class="icon ion-arrow-left-b"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('enter')" class="tapable txtbtn">
+										<span>OK</span>
+									</div>
+								</td>
+								<td>
+									<div ng-click="right()" class="tapable">
+										<i class="icon ion-arrow-right-b"></i>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div ng-click="call('down')" class="tapable">
+										<i class="icon ion-arrow-down-b"></i>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<div ng-click="call('togglefavourite')" class="tapable smallicn">
+										<i class="icon ion-pin"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('watchtrailer')" class="tapable smallicn">
+										<i class="icon ion-film-marker"></i>
+									</div>
+								</td>
+								<td>
+									<div ng-click="call('back')" class="tapable smallicn flippedicn">
+										<i class="icon ion-arrow-return-left"></i>
+									</div>
+								</td>
+							</tr>
+							<tr style="height:54px">
+								<td colspan="3"></td>
+							</tr>
+						</table>
+					</ion-slide>
+					<ion-slide>
+						<div>
+							<label class="item item-input">
+								<i class="icon ion-search placeholder-icon"></i>
+								<input type="text" placeholder="Search" id="search" on-return="search(term); closeKeyboard()" ng-model="term" />
+							</label>
+							<i ng-click="clearsearch()" class="clearbutton icon ion-close-circled"></i>
+						</div>
+						<label class="item item-input item-select">
+							<div class="input-label">Genre</div>
+							<select ng-model="currentGenre" ng-change="appyGenre(currentGenre)">
+								<option ng-repeat="val in values.genres">{{val}}</option>
+							</select>
+						</label>
+						<label class="item item-input item-select">
+							<div class="input-label">Sort</div>
+							<select ng-model="currentSort" ng-change="applySort(currentSort)">
+								<option ng-repeat="val in values.sorters" value="{{val}}">{{sortName(val)}}</option>
+							</select>
+						</label>
+						<!--<label class="item item-input item-select">
+							<div class="input-label">Type</div>
+							<select>
+								<option ng-repeat="val in values.types">{{val}}</option>
+							</select>
+						</label>-->
+					</ion-slide>
+				</ion-slide-box>
+				<div class="bar bar-footer" style="background-color:transparent">
+					<div class="title item range" ng-hide="volume == -1">
+						<span ng-click="call('togglemute')" class="tapable" style="margin-right:20px">
+							<i class="icon ion-android-volume-off" style="margin:5px"></i>
+						</span>
+						<i class="icon ion-volume-low"></i>
+						<input type="range" min="0" max="100" ng-model="volume" ng-change="volChange(volume)" ng-touchend="volChange()" ng-mouseup="volChange()">
+						<i class="icon ion-volume-high"></i>
+					</div>
+				</div>
+			</ion-content>
+		</ion-pane>
+	</body>
+</html>
+
+<!--
+-up
+-down
+-left
+-right
+-enter
+-back
+-toggleplaying
+togglefullscreen
+-togglemute
+-volume
+quality
+-togglefavourite
+togglewatched
+-movieslist
+-showslist
+-nextseason
+-previousseason
+toggletab
+showwatchlist
+- showfavourites
+-getplaying', [], logData
+-getselection', [], logData
+setselection
+getcurrentlist', [], logData
+getplayers', [], logData
+setplayer
+getcurrenttab', [], logData
+-getgenres', [], logData
+-getsorters', [], logData
+-gettypes', [], logData
+filtergenre
+filtersorter
+filtertype
+-filtersearch', ['taken']
+-clearsearch
+-seek', [30]
+-seek', [-30]
+selectepisode
+-watchtrailer
+
+-->

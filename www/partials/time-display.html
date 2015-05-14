@@ -1,0 +1,12 @@
+<div class="chartbox" ng-if="movie && movie.streamUrl">
+	<canvas id="chart" width="120" height="120"></canvas>
+	<div class="time">
+		<div>
+			<i class="icon ion-ios-location-outline" style="font-size:0.88em"></i>
+			{{format(movie.currentTime)}}  
+			&nbsp;
+			{{format(movie.duration - movie.currentTime)}}
+			<i class="icon ion-clock" style="font-size:0.88em"></i>
+		</div>
+	</div>
+</div>

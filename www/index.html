@@ -109,8 +109,10 @@
 									</div>
 								</td>
 								<td>
-									<div ng-click="call('showslist')" class="tapable smallicn">
-										<i class="icon ion-android-desktop"></i>
+									<div ng-click="call('showslist')" class="tapable smallicn" style="position:relative">
+										<div style="position:relative;top:-0.1em">
+											<i class="icon ion-android-film" style="font-size:0.7em;padding-right:0.15em"></i><i class="icon ion-android-film" style="font-size:0.7em;padding-right:0.15em"></i><i class="icon ion-android-film" style="font-size:0.7em"></i>
+										</div>
 									</div>
 								</td>
 								<td>
@@ -157,12 +159,18 @@
 							<tr>
 								<td>
 									<div ng-click="call('togglefavourite')" class="tapable smallicn">
-										<i class="icon ion-pin"></i>
+										<div style="position:relative">
+											<i class="icon ion-plus-round" style="top:0.5em;left:0.65em;font-size:0.4em;color:black;position:absolute"></i>
+											<i class="icon ion-heart" style=""></i>
+										</div>
 									</div>
 								</td>
 								<td>
 									<div ng-click="call('watchtrailer')" class="tapable smallicn">
-										<i class="icon ion-film-marker"></i>
+										<div style="position:relative">
+											<i class="icon ion-stop" style="top:0.8em;left:0.45em;font-size:0.5em;position:absolute"></i>
+											<i class="icon ion-film-marker" style=""></i>
+										</div>
 									</div>
 								</td>
 								<td>
@@ -177,20 +185,20 @@
 						</table>
 					</ion-slide>
 					<ion-slide>
-						<div>
+						<div class="searchField">
 							<label class="item item-input">
 								<i class="icon ion-search placeholder-icon"></i>
 								<input type="text" placeholder="Search" id="search" on-return="search(term); closeKeyboard()" ng-model="term" />
 							</label>
 							<i ng-click="clearsearch()" class="clearbutton icon ion-close-circled"></i>
 						</div>
-						<label class="item item-input item-select">
+						<label class="genreField item item-input item-select">
 							<div class="input-label">Genre</div>
 							<select ng-model="currentGenre" ng-change="appyGenre(currentGenre)">
 								<option ng-repeat="val in values.genres">{{val}}</option>
 							</select>
 						</label>
-						<label class="item item-input item-select">
+						<label class="sortField item item-input item-select">
 							<div class="input-label">Sort</div>
 							<select ng-model="currentSort" ng-change="applySort(currentSort)">
 								<option ng-repeat="val in values.sorters" value="{{val}}">{{sortName(val)}}</option>

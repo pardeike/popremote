@@ -37,11 +37,37 @@ select, option {
 }
 
 #search {
-	font-size: 1em;
+	font-size: 0.7em;
+	line-height: 1.4em;
 	color: white;
 	font-weight: 900;
 	-webkit-text-fill-color: white;
+}
+
+.searchField>* {
+	font-size: 2em;
+}
+
+.genreField>div, .genreField>select {
+	font-size: 1.2em;
 	line-height: 2em;
+}
+
+.sortField>div, .sortField>select {
+	font-size: 1.2em;
+	line-height: 2em;
+}
+
+.item-select:after {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  margin-top: -3px;
+  width: 0;
+  height: 0;
+  color: white;
+  content: "";
+  pointer-events: none;
 }
 
 .item.item-input {

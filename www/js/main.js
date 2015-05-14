@@ -1,4 +1,4 @@
-app.controller('main', function($scope, $q, popcorn, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+app.controller('main', function($scope, $q, popcorn, $timeout, $ionicPopup, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
 	$scope.call = function(cmd, param, cb) {
 		popcorn.call(cmd, cb, param);
 	};
@@ -15,6 +15,42 @@ app.controller('main', function($scope, $q, popcorn, $timeout, $ionicSlideBoxDel
 	
 	$scope.slideHasChanged = function(n) {
 		//
+	};
+	
+	$scope.settings = function(params) {
+		
+		$scope.storage = {
+			host: localStorage.getItem('popcorn-time-host') || 'localhost',
+			port: localStorage.getItem('popcorn-time-port') || 8008,
+			user: localStorage.getItem('popcorn-time-user') || 'popcorn',
+			pass: localStorage.getItem('popcorn-time-pass') || 'popcorn'
+		};
+		
+		var ask = function(name, prop, cb) {
+			$ionicPopup.show({
+				title: 'Settings',
+				subTitle: name,
+				scope: $scope,
+				template: '<input type="text" ng-model="storage.' + prop + '">',
+				buttons: [{
+					text: '<b>OK</b>',
+					type: 'button-positive'
+				}]
+			}).then(function() {
+				localStorage.setItem('popcorn-time-' + prop, $scope.storage[prop]);
+				cb();
+			});
+		};
+		
+		ask('Hostname', 'host', function() {
+			ask('Port', 'port', function() {
+				ask('Username', 'user', function() {
+					ask('Password', 'pass', function() {
+					});
+				});
+			});
+		});
+		
 	};
 	
 	var playing = function() {

@@ -204,12 +204,11 @@
 								<option ng-repeat="val in values.sorters" value="{{val}}">{{sortName(val)}}</option>
 							</select>
 						</label>
-						<!--<label class="item item-input item-select">
-							<div class="input-label">Type</div>
-							<select>
-								<option ng-repeat="val in values.types">{{val}}</option>
-							</select>
-						</label>-->
+						<div class="bar bar-footer" style="background-color:transparent;color:white;padding-bottom:100px;border:0">
+							<button class="button button-block button-positive" ng-click="settings()">
+								Settings
+							</button>
+						</div>
 					</ion-slide>
 				</ion-slide-box>
 				<div class="bar bar-footer" style="background-color:transparent">
@@ -227,45 +226,19 @@
 	</body>
 </html>
 
-<!--
--up
--down
--left
--right
--enter
--back
--toggleplaying
+<!-- not handled yet:
+	
 togglefullscreen
--togglemute
--volume
 quality
--togglefavourite
 togglewatched
--movieslist
--showslist
--nextseason
--previousseason
 toggletab
 showwatchlist
-- showfavourites
--getplaying', [], logData
--getselection', [], logData
 setselection
 getcurrentlist', [], logData
 getplayers', [], logData
 setplayer
 getcurrenttab', [], logData
--getgenres', [], logData
--getsorters', [], logData
--gettypes', [], logData
-filtergenre
-filtersorter
 filtertype
--filtersearch', ['taken']
--clearsearch
--seek', [30]
--seek', [-30]
 selectepisode
--watchtrailer
 
 -->

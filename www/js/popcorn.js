@@ -1,8 +1,9 @@
 app.service('popcorn', function($http, $rootScope) {
-	var host = '10.0.1.99';
 	var api = {
 		call: function(method, cb, params) {
-			$http.post('http://' + host + ':8008', {
+			var host = localStorage.getItem('popcorn-time-host') || 'localhost';
+			var port = localStorage.getItem('popcorn-time-port') || 8008;
+			$http.post('http://' + host + ':' + port, {
 				params: params || [],
 				id: 10,
 				method: method,
